@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Wall | RMX26</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fcfcfb;
+            background-image: radial-gradient(#e5e7eb 0.7px, transparent 0.7px);
+            background-size: 40px 40px;
+            color: #1a1a1a;
+        }
+        h1 { font-family: 'Playfair Display', serif; }
+        
+        /* Masonry Layout */
+        .masonry-grid {
+            column-count: 1;
+            column-gap: 1.5rem;
+            padding: 1.5rem;
+        }
+        @media (min-width: 640px) { .masonry-grid { column-count: 2; } }
+        @media (min-width: 1024px) { .masonry-grid { column-count: 3; } }
+        
+        .memory-card {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .img-wrap {
+            border-radius: 1.25rem;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.03);
+            transition: transform 0.4s ease;
+        }
+        
+        .img-wrap:hover {
+            transform: scale(1.015);
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .decorative-line {
+            width: 60px;
+            height: 1px;
+            background: #e5e7eb;
+            margin: 2rem auto;
+        }
+    </style>
+</head>
+<body class="pb-24">
+
+    <header class="text-center pt-24 pb-16 px-4">
+        <h1 class="text-7xl md:text-9xl text-gray-900 tracking-tighter mb-4">Memory Wall</h1>
+        <div class="text-xl md:text-2xl font-light text-gray-400 tracking-[0.6em] uppercase">RMX26</div>
+        <div class="decorative-line"></div>
+    </header>
+
+    <main class="max-w-7xl mx-auto">
+        <div class="masonry-grid" id="wall">
+            <!-- Images are injected here via the list below -->
+        </div>
+    </main>
+
+    <footer class="text-center py-20">
+        <p class="text-[10px] font-bold tracking-[0.4em] text-gray-300 uppercase">Class of RMX26 • Forever Stored</p>
+    </footer>
+
+    <script>
+        // These are the specific files you provided. 
+        // No upload buttons needed - the site just shows these.
+        const memoryFiles = [
+            "IMG-20260406-WA0026.jpg", 
+            "IMG-20260406-WA0025.jpg", 
+            "IMG-20260406-WA0024.jpg",
+            "IMG-20260406-WA0022.jpg", 
+            "IMG-20260406-WA0012.jpg", 
+            "IMG-20260406-WA0010.jpg",
+            "IMG-20260406-WA0004.jpg", 
+            "VideoCapture_20260409-163501.jpg", 
+            "VideoCapture_20260409-161152.jpg",
+            "VideoCapture_20260409-161144.jpg", 
+            "Screenshot_20260409-160657_Instagram.jpg",
+            "Screenshot_20260409-160553_Instagram.jpg", 
+            "Screenshot_20260409-160500_Instagram.jpg",
+            "Screenshot_20260409-160210_Instagram.jpg", 
+            "IMG-20260406-WA0030.jpg",
+            "IMG-20260406-WA0029.jpg", 
+            "IMG-20260406-WA0027.jpg", 
+            "17757341669367346280891255818834_8f0395.jpg"
+        ];
+
+        const wall = document.getElementById('wall');
+
+        memoryFiles.forEach((file, index) => {
+            const card = document.createElement('div');
+            card.className = 'memory-card';
+            card.style.animationDelay = `${index * 0.1}s`;
+            
+            card.innerHTML = `
+                <div class="img-wrap">
+                    <img src="${file}" alt="RMX26 Memory" loading="lazy">
+                </div>
+            `;
+            wall.appendChild(card);
+        });
+    </script>
+</body>
+</html>
